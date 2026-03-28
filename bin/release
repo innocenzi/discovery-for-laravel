@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+
+<?php
+
+require_once getcwd() . '/vendor/autoload.php';
+
+const CHANGELOG_PATH = 'CHANGELOG.md';
+
+function run(string ...$command): ?string
+{
+	$format = array_shift($command);
+	$arguments = array_map(static fn (string $argument): string => escapeshellarg($argument), $command);
+	$compiled = vsprintf($format, $arguments);
+
+	return trim(shell_exec($compiled . ' 2>&1') ?: '') ?: null;
+}
+
+/*
+|--------------------------------------------------------------------------
+| RELEASE
+|--------------------------------------------------------------------------
+*/
+
+if (run('git rev-parse --abbrev-ref HEAD') !== 'main') {
+	throw new RuntimeException('Releases must be created from `main`.');
+}
+
+if (run('git status --porcelain')) {
+	throw new RuntimeException('Working tree is dirty. Commit or stash changes before creating a release.');
+}
+
+if ($tag = $argv[1] ?? null) {
+	run('git-cliff -o %s --tag %s', CHANGELOG_PATH, $tag);
+} else {
+	run('git-cliff -o %s --bump', CHANGELOG_PATH);
+}
+
+$tag ??= run('git-cliff --bumped-version 2> /dev/null');
+
+if (run('git tag --list %s', $tag)) {
+	throw new RuntimeException(sprintf('Tag `%s` already exists.', $tag));
+}
+
+run('git add %s', CHANGELOG_PATH);
+run('git commit -m %s', sprintf('release: v%s', $tag));
+run('git tag %s', $tag);
+
+echo sprintf("Tagged %s. Create the release with: git push --atomic origin main %s\n", $tag, $tag);

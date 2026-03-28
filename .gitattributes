@@ -3,3 +3,4 @@
 /.gitignore             export-ignore
 /src/**/*Test.php       export-ignore
 /tests                  export-ignore
+/bin                    export-ignore
