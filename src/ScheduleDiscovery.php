@@ -1,0 +1,102 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Innocenzi\Discovery;
+
+use Illuminate\Console\Scheduling\CallbackEvent;
+use Illuminate\Console\Scheduling\Event;
+use Illuminate\Console\Scheduling\PendingEventAttributes;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Schedule as Scheduler;
+use Innocenzi\Discovery\Scheduling\DiscoveredSchedule;
+use Innocenzi\Discovery\Scheduling\Every;
+use Innocenzi\Discovery\Scheduling\Schedule;
+use Innocenzi\Discovery\Scheduling\Type;
+use Tempest\Discovery\Discovery;
+use Tempest\Discovery\DiscoveryLocation;
+use Tempest\Discovery\IsDiscovery;
+use Tempest\Reflection\ClassReflector;
+
+final class ScheduleDiscovery implements Discovery
+{
+    use IsDiscovery;
+
+    public function __construct(
+        private readonly Application $application,
+    ) {}
+
+    public function discover(DiscoveryLocation $location, ClassReflector $class): void
+    {
+        foreach ($class->getPublicMethods() as $method) {
+            $attribute = $method->getAttribute(Schedule::class);
+
+            if (! $attribute) {
+                continue;
+            }
+
+            $this->discoveryItems->add($location, DiscoveredSchedule::fromMethod($method, $attribute));
+        }
+    }
+
+    public function apply(): void
+    {
+        /** @var DiscoveredSchedule $schedule */
+        foreach ($this->discoveryItems as $schedule) {
+            $scheduler = $this->createSchedule($schedule);
+
+            if ($schedule->name) {
+                $scheduler->name($schedule->name);
+            }
+
+            if ($schedule->withoutOverlapping !== null) {
+                $scheduler->withoutOverlapping();
+            }
+
+            if ($schedule->onOneServer !== null) {
+                $scheduler->onOneServer();
+            }
+
+            if ($schedule->runInBackground) {
+                $scheduler->runInBackground();
+            }
+
+            match ($schedule->schedule) {
+                Every::SECOND => $scheduler->everySecond(),
+                Every::FIVE_SECONDS => $scheduler->everyFiveSeconds(),
+                Every::TEN_SECONDS => $scheduler->everyTenSeconds(),
+                Every::THIRTY_SECONDS => $scheduler->everyThirtySeconds(),
+                Every::MINUTE => $scheduler->everyMinute(),
+                Every::TWO_MINUTES => $scheduler->everyTwoMinutes(),
+                Every::THREE_MINUTES => $scheduler->everyThreeMinutes(),
+                Every::FOUR_MINUTES => $scheduler->everyFourMinutes(),
+                Every::FIVE_MINUTES => $scheduler->everyFiveMinutes(),
+                Every::TEN_MINUTES => $scheduler->everyTenMinutes(),
+                Every::FIFTEEN_MINUTES => $scheduler->everyFifteenMinutes(),
+                Every::THIRTY_MINUTES => $scheduler->everyThirtyMinutes(),
+                Every::HOUR => $scheduler->hourlyAt($schedule->time ?? '0'),
+                Every::TWO_HOURS => $scheduler->everyTwoHours(),
+                Every::THREE_HOURS => $scheduler->everyThreeHours(),
+                Every::FOUR_HOURS => $scheduler->everyFourHours(),
+                Every::SIX_HOURS => $scheduler->everySixHours(),
+                Every::DAY => $scheduler->dailyAt($schedule->time ?? '00:00'),
+                Every::MONTH => $scheduler->monthly(),
+                Every::YEAR => $scheduler->yearly(),
+                default => $scheduler->cron($schedule->schedule),
+            };
+        }
+    }
+
+    private function createSchedule(DiscoveredSchedule $schedule): PendingEventAttributes|CallbackEvent|Event
+    {
+        if ($schedule->type === Type::JOB) {
+            return Scheduler::job($schedule->class);
+        }
+
+        if ($schedule->type === Type::COMMAND) {
+            return Scheduler::command($schedule->class);
+        }
+
+        return Scheduler::call([$schedule->class, $schedule->method]);
+    }
+}

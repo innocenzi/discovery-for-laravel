@@ -60,6 +60,7 @@ By default, we provide the following:
 - `\Innocenzi\Discovery\ConfigDiscovery`
 - `\Innocenzi\Discovery\InitializerDiscovery`
 - `\Innocenzi\Discovery\MiddlewareDiscovery`
+- `\Innocenzi\Discovery\ScheduleDiscovery`
 
 &nbsp;
 
@@ -99,9 +100,39 @@ use Innocenzi\Discovery\Events\EventHandler;
 final class InvoiceEventHandler
 {
     #[EventHandler]
-    public function onInvoiePaid(InvoicePaid $event): void
+    public function onInvoicePaid(InvoicePaid $event): void
     {
         // ...
+    }
+}
+```
+
+&nbsp;
+
+### Scheduling
+
+Methods annotated with `Innocenzi\Discovery\Scheduling\Schedule` are discovered and registered as scheduled tasks.
+
+You can use either one of the built-in `Innocenzi\Discovery\Scheduling\Every` values or a raw cron expression:
+
+```php
+namespace Modules\Billing;
+
+use Innocenzi\Discovery\Scheduling\Every;
+use Innocenzi\Discovery\Scheduling\Schedule;
+
+final class BillingScheduler
+{
+    #[Schedule(Every::SECOND)]
+    public function billEverySecond(): void
+    {
+        // ...
+    }
+
+    #[Schedule(Every::DAY, time: '13:30')]
+    public function billDaily(): void
+    {
+        // Runs every day at 13:30.
     }
 }
 ```
