@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Innocenzi\Discovery\Hybridly;
 
 use Illuminate\Container\Attributes\Singleton;
-use Innocenzi\Discovery\Container\Initializer;
+use Innocenzi\Discovery\Initializer;
 use Psr\Container\ContainerInterface;
 use Tempest\Discovery\Composer;
 

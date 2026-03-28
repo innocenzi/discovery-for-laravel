@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Routing;
 
 use Illuminate\Routing\Router;
-use Innocenzi\Discovery\Routing\RouteDiscovery;
+use Innocenzi\Discovery\RouteDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

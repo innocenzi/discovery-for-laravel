@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Console;
 
 use Illuminate\Console\Application as Artisan;
-use Innocenzi\Discovery\Console\CommandDiscovery;
+use Innocenzi\Discovery\CommandDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Routing;
+namespace Innocenzi\Discovery;
 
 use Illuminate\Routing\Router;
+use Innocenzi\Discovery\Routing\Middleware;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;

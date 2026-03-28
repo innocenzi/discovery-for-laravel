@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Console;
+namespace Innocenzi\Discovery;
 
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Console\Command;

@@ -54,11 +54,11 @@ This package comes with a set of default discoveries. They can be disabled indiv
 
 By default, we provide the following:
 
-- `\Innocenzi\Discovery\Console\CommandsDiscovery`
-- `\Innocenzi\Discovery\Config\ConfigDiscovery`
-- `\Innocenzi\Discovery\Container\InitializerDiscovery`
-- `\Innocenzi\Discovery\Routing\RoutesDiscovery`
-- `\Innocenzi\Discovery\Routing\MiddlewareDiscovery`
+- `\Innocenzi\Discovery\CommandsDiscovery`
+- `\Innocenzi\Discovery\ConfigDiscovery`
+- `\Innocenzi\Discovery\InitializerDiscovery`
+- `\Innocenzi\Discovery\RoutesDiscovery`
+- `\Innocenzi\Discovery\MiddlewareDiscovery`
 
 &nbsp;
 

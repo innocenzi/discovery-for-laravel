@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Config;
 
 use Illuminate\Config\Repository;
-use Innocenzi\Discovery\Config\ConfigDiscovery;
+use Innocenzi\Discovery\ConfigDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

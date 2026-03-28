@@ -6,11 +6,11 @@ return [
      * classes, but also classes that other Discovery classes should ignore.
      */
     'skip_classes' => [
-        // \Innocenzi\Discovery\Config\ConfigDiscovery::class,
-        // \Innocenzi\Discovery\Routing\RouteDiscovery::class,
-        // \Innocenzi\Discovery\Container\InitializerDiscovery::class,
-        // \Innocenzi\Discovery\Console\CommandDiscovery::class,
-        // \Innocenzi\Discovery\Routing\MiddlewareDiscovery::class,
+        // \Innocenzi\Discovery\ConfigDiscovery::class,
+        // \Innocenzi\Discovery\RouteDiscovery::class,
+        // \Innocenzi\Discovery\InitializerDiscovery::class,
+        // \Innocenzi\Discovery\CommandDiscovery::class,
+        // \Innocenzi\Discovery\MiddlewareDiscovery::class,
         \Innocenzi\Discovery\Hybridly\HybridViewsDiscovery::class,
     ],
 
