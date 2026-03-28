@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Scheduling;
 
+/**
+ * @mago-expect lint:too-many-enum-cases
+ */
 enum Every
 {
     case SECOND;

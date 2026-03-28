@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Scheduling;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Tempest\Reflection\MethodReflector;
 
+/**
+ * @mago-expect lint:property-name
+ */
 final class DiscoveredSchedule
 {
     public function __construct(

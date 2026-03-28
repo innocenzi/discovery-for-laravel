@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Scheduling;
 
 use Attribute;
 
+/**
+ * @mago-expect lint:property-name
+ */
 #[Attribute(Attribute::TARGET_METHOD)]
 final class Schedule
 {

@@ -39,6 +39,7 @@ final class ScheduleDiscovery implements Discovery
         }
     }
 
+    /** @mago-expect lint:halstead */
     public function apply(): void
     {
         /** @var DiscoveredSchedule $schedule */
