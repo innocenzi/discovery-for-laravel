@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Routing;
 
 use Illuminate\Routing\Router;
@@ -18,7 +20,9 @@ final class MiddlewareDiscovery implements Discovery
 
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
-        if ($attribute = $class->getAttribute(Middleware::class)) {
+        $attribute = $class->getAttribute(Middleware::class);
+
+        if ($attribute) {
             $this->discoveryItems->add($location, [$attribute->group, $class->getName()]);
         }
     }

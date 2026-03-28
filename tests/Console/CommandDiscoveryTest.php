@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Console;
 
 use Illuminate\Console\Application as Artisan;
@@ -9,7 +11,6 @@ use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Reflection\ClassReflector;
-use Tests\Console\FixtureCommand;
 
 /** @internal */
 final class CommandDiscoveryTest extends TestCase

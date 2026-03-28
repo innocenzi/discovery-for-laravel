@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Routing;
 
 use Illuminate\Foundation\Application;
@@ -21,12 +23,12 @@ final class RouteDiscovery implements Discovery
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         foreach ($class->getPublicMethods() as $method) {
-            $routeAttributes = $method->getAttributes(Route::class);
+            $route_attributes = $method->getAttributes(Route::class);
 
-            foreach ($routeAttributes as $routeAttribute) {
+            foreach ($route_attributes as $route_attribute) {
                 $route = DiscoveredRoute::from(
                     method: $method,
-                    route: $routeAttribute,
+                    route: $route_attribute,
                     decorators: [
                         ...$method->getDeclaringClass()->getAttributes(RouteDecorator::class),
                         ...$method->getAttributes(RouteDecorator::class),

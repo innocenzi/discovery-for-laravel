@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Routing;
 
 use Illuminate\Routing\Router;
@@ -10,7 +12,6 @@ use Tempest\Discovery\DiscoveryItems;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Reflection\ClassReflector;
 use Tests\Routing\Fixtures\FixtureMiddleware;
-use Tests\Routing\Fixtures\IgnoredRoutesClass;
 
 /** @internal */
 final class MiddlewareDiscoveryTest extends TestCase

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Config;
 
 use Illuminate\Config\Repository;
@@ -8,7 +10,6 @@ use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;
 use Tempest\Discovery\DiscoveryLocation;
-use Tests\HasFixtures;
 
 /** @internal */
 final class ConfigDiscoveryTest extends TestCase

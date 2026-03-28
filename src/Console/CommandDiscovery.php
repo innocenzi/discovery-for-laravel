@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Console;
 
 use Illuminate\Console\Application as Artisan;
@@ -28,7 +30,7 @@ final class CommandDiscovery implements Discovery
             $commands[] = $class;
         }
 
-        Artisan::starting(function (Artisan $artisan) use ($commands) {
+        Artisan::starting(static function (Artisan $artisan) use ($commands) {
             $artisan->resolveCommands($commands);
         });
     }

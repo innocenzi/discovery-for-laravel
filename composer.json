@@ -13,7 +13,7 @@
 		"test": "phpunit",
 		"fmt": [
 			"mago fmt",
-			"bun run fmt"
+			"bunx dprint fmt"
 		],
 		"lint:fix": "mago lint --fix --format-after-fix",
 		"lint": "mago lint",

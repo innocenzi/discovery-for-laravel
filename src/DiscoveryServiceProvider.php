@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery;
 
 use Illuminate\Support\ServiceProvider;
@@ -28,7 +30,7 @@ final class DiscoveryServiceProvider extends ServiceProvider
         $discovery = $this->initializeDiscovery();
         $discovery->discover();
 
-        $this->app->singleton(Discovery::class, fn () => $discovery);
+        $this->app->singleton(Discovery::class, static fn () => $discovery);
     }
 
     private function initializeDiscovery(): Discovery

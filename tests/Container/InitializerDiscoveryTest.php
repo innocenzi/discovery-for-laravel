@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Container;
 
 use Innocenzi\Discovery\Container\InitializerDiscovery;

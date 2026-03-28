@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Container;
 
 use Illuminate\Container\Attributes\Singleton;
@@ -32,7 +34,7 @@ final class InitializerDiscovery implements Discovery
 
             $this->application->bind(
                 abstract: $method->getReturnType()->getName(),
-                concrete: fn (Application $application) => $application->make($initializer->getName())->initialize($application),
+                concrete: static fn (Application $application) => $application->make($initializer->getName())->initialize($application),
                 shared: ! is_null($initializer->getAttribute(Singleton::class)),
             );
         }

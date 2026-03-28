@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Innocenzi\Discovery\Hybridly;
 
 use Tempest\Discovery\Composer;
@@ -14,6 +16,9 @@ final class DefaultHybridComponentNameResolver implements HybridComponentNameRes
         private readonly string $root_path,
     ) {}
 
+    /**
+     * @mago-expect lint:no-else-clause
+     */
     public function resolve(string $path): HybridComponentName
     {
         $path = str($path)
@@ -51,8 +56,8 @@ final class DefaultHybridComponentNameResolver implements HybridComponentNameRes
             ->replace(['/', '\\\\'], '.')
             ->chopEnd(['.view.vue', '.layout.vue'])
             ->explode('.')
-            ->filter(fn (string $segment) => $segment !== '')
-            ->map(fn (string $segment) => str($segment)->kebab()->toString())
+            ->filter(static fn (string $segment) => $segment !== '')
+            ->map(static fn (string $segment) => str($segment)->kebab()->toString())
             ->join('.');
 
         return new HybridComponentName(
