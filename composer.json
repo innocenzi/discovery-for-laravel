@@ -1,0 +1,62 @@
+{
+	"name": "innocenzi/discovery-for-laravel",
+	"description": "Discover code anywhere in your Laravel codebase without relying on path conventions",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Enzo Innocenzi",
+			"email": "enzo@innocenzi.dev"
+		}
+	],
+	"scripts": {
+		"test": "phpunit",
+		"fmt": [
+			"mago fmt",
+			"bun run fmt"
+		],
+		"lint:fix": "mago lint --fix --format-after-fix",
+		"lint": "mago lint",
+		"lint:compact": "mago lint --reporting-format emacs",
+		"qa": [
+			"composer fmt",
+			"composer lint:fix",
+			"composer lint",
+			"composer test"
+		]
+	},
+	"require": {
+		"php": "~8.5",
+		"tempest/discovery": "^3.8.1",
+		"illuminate/contracts": "^13.2"
+	},
+	"require-dev": {
+		"carthage-software/mago": "^1.16",
+		"orchestra/testbench": "^11.0",
+		"hybridly/laravel": "0.10.0-beta.14",
+		"phpunit/phpunit": "^12.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"Innocenzi\\Discovery\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"carthage-software/mago": true,
+			"pestphp/pest-plugin": true
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Innocenzi\\Discovery\\DiscoveryServiceProvider"
+			]
+		}
+	}
+}

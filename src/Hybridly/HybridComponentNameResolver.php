@@ -1,0 +1,11 @@
+<?php
+
+namespace Innocenzi\Discovery\Hybridly;
+
+interface HybridComponentNameResolver
+{
+    /**
+     * Resolves the namespace and name of a hybrid view given a path.
+     */
+    public function resolve(string $path): HybridComponentName;
+}

@@ -1,0 +1,14 @@
+<?php
+
+namespace Tests\Container\Fixtures;
+
+use Innocenzi\Discovery\Container\Initializer;
+use Psr\Container\ContainerInterface;
+
+final class FixtureServiceInitializer implements Initializer
+{
+    public function initialize(ContainerInterface $container): FixtureService
+    {
+        return new FixtureService();
+    }
+}

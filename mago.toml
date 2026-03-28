@@ -1,0 +1,30 @@
+php-version = "8.5.0"
+
+[source]
+paths = ["src", "tests"]
+
+[formatter]
+print-width = 180
+tab-width = 4
+use-tabs = false
+null-type-hint = "question"
+indent-heredoc = false
+inline-empty-method-braces = false
+space-before-arrow-function-parameter-list-parenthesis = true
+space-after-logical-not-unary-prefix-operator = true
+always-break-named-arguments-list = false
+preserve-breaking-member-access-chain = true
+preserve-breaking-argument-list = true
+preserve-breaking-array-like = true
+preserve-breaking-parameter-list = true
+preserve-breaking-attribute-list = true
+preserve-breaking-conditional-expression = true
+array-table-style-alignment = false
+
+[linter.rules]
+tagged-todo = { level = "note" }
+no-isset = { allow-array-checks = true }
+no-shorthand-ternary = { enabled = false }
+excessive-parameter-list = { enabled = false }
+variable-name = { enabled = true, camel = false, either = false }
+property-name = { enabled = true, camel = false, either = false }
