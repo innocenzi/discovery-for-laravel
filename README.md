@@ -54,10 +54,11 @@ This package comes with a set of default discoveries. They can be disabled indiv
 
 By default, we provide the following:
 
-- `\Innocenzi\Discovery\CommandsDiscovery`
+- `\Innocenzi\Discovery\CommandDiscovery`
+- `\Innocenzi\Discovery\EventHandlerDiscovery`
+- `\Innocenzi\Discovery\RouteDiscovery`
 - `\Innocenzi\Discovery\ConfigDiscovery`
 - `\Innocenzi\Discovery\InitializerDiscovery`
-- `\Innocenzi\Discovery\RoutesDiscovery`
 - `\Innocenzi\Discovery\MiddlewareDiscovery`
 
 &nbsp;
@@ -86,48 +87,24 @@ final class PruneReportsCommand extends Command
 
 &nbsp;
 
-### Configuration files
+### Event handlers
 
-Any file ending in `<name>.config.php` will be registered under the `<name>` namespace. This is useful to co-locate configuration files with the components they configure.
-
-```php
-// src/Modules/Billing/billing.config.php
-return [
-    'enabled' => true,
-    'retry_attempts' => 3,
-];
-```
-
-The example above becomes available as `config('billing.enabled')`.
-
-&nbsp;
-
-### Dependency initializers
-
-This package provides [dependency initializers](https://tempestphp.com/3.x/essentials/container#dependency-initializers), a concept borrowed from Tempest. Initializers are simple classes responsible for initializing and configuring a specific dependency.
-
-In a typical Laravel application, this is done in service providers. Using this package, you can create a class implementing `Innocenzi\Discovery\Container\Initializer` anywhere (preferably, near related code), and it will be automatically discovered and registered in the container.
+Methods annotated with the `Innocenzi\Discovery\Events\EventHandler` attribute will be discovered and registered as event listeners. The method must accept a single parameter, which is the event class to listen to:
 
 ```php
-namespace Modules\Strip;
+namespace Modules\Billing;
 
-use Innocenzi\Discovery\Container\Initializer;
-use Illuminate\Container\Attributes\Singleton;
-use Psr\Container\ContainerInterface;
+use Innocenzi\Discovery\Events\EventHandler;
 
-#[Singleton]
-final class StripeClientInitializer implements Initializer
+final class InvoiceEventHandler
 {
-    public function initialize(ContainerInterface $container): StripeClient
+    #[EventHandler]
+    public function onInvoiePaid(InvoicePaid $event): void
     {
-        return new StripeClient(
-            key: config('services.stripe.key'),
-        );
+        // ...
     }
 }
 ```
-
-To register the initialized service as a singleton, add the built-in `Illuminate\Container\Attributes\Singleton` attribute on the initializer class.
 
 &nbsp;
 
@@ -189,6 +166,51 @@ final class Web implements RouteDecorator
     }
 }
 ```
+
+&nbsp;
+
+### Configuration files
+
+Any file ending in `<name>.config.php` will be registered under the `<name>` namespace. This is useful to co-locate configuration files with the components they configure.
+
+```php
+// src/Modules/Billing/billing.config.php
+return [
+    'enabled' => true,
+    'retry_attempts' => 3,
+];
+```
+
+The example above becomes available as `config('billing.enabled')`.
+
+&nbsp;
+
+### Dependency initializers
+
+This package provides [dependency initializers](https://tempestphp.com/3.x/essentials/container#dependency-initializers), a concept borrowed from Tempest. Initializers are simple classes responsible for initializing and configuring a specific dependency.
+
+In a typical Laravel application, this is done in service providers. Using this package, you can create a class implementing `Innocenzi\Discovery\Container\Initializer` anywhere (preferably, near related code), and it will be automatically discovered and registered in the container.
+
+```php
+namespace Modules\Strip;
+
+use Innocenzi\Discovery\Container\Initializer;
+use Illuminate\Container\Attributes\Singleton;
+use Psr\Container\ContainerInterface;
+
+#[Singleton]
+final class StripeClientInitializer implements Initializer
+{
+    public function initialize(ContainerInterface $container): StripeClient
+    {
+        return new StripeClient(
+            key: config('services.stripe.key'),
+        );
+    }
+}
+```
+
+To register the initialized service as a singleton, add the built-in `Illuminate\Container\Attributes\Singleton` attribute on the initializer class.
 
 &nbsp;
 
