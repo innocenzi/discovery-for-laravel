@@ -33,7 +33,7 @@ composer require innocenzi/discovery-for-laravel
 Optionally, publish the configuration file when you want to customize behavior:
 
 ```bash
-php artisan vendor:publish --provider="Innocenzi\Discovery\DiscoveryServiceProvider"
+php artisan vendor:publish --provider="Discovery\DiscoveryServiceProvider"
 ```
 
 &nbsp;
@@ -54,13 +54,13 @@ This package comes with a set of default discoveries. They can be disabled indiv
 
 By default, we provide the following:
 
-- `\Innocenzi\Discovery\CommandDiscovery`
-- `\Innocenzi\Discovery\EventHandlerDiscovery`
-- `\Innocenzi\Discovery\RouteDiscovery`
-- `\Innocenzi\Discovery\ConfigDiscovery`
-- `\Innocenzi\Discovery\InitializerDiscovery`
-- `\Innocenzi\Discovery\MiddlewareDiscovery`
-- `\Innocenzi\Discovery\ScheduleDiscovery`
+- `\Discovery\CommandDiscovery`
+- `\Discovery\EventHandlerDiscovery`
+- `\Discovery\RouteDiscovery`
+- `\Discovery\ConfigDiscovery`
+- `\Discovery\InitializerDiscovery`
+- `\Discovery\MiddlewareDiscovery`
+- `\Discovery\ScheduleDiscovery`
 
 &nbsp;
 
@@ -90,12 +90,12 @@ final class PruneReportsCommand extends Command
 
 ### Event handlers
 
-Methods annotated with the `Innocenzi\Discovery\Events\EventHandler` attribute will be discovered and registered as event listeners. The method must accept a single parameter, which is the event class to listen to:
+Methods annotated with the `Discovery\Events\EventHandler` attribute will be discovered and registered as event listeners. The method must accept a single parameter, which is the event class to listen to:
 
 ```php
 namespace Modules\Billing;
 
-use Innocenzi\Discovery\Events\EventHandler;
+use Discovery\Events\EventHandler;
 
 final class InvoiceEventHandler
 {
@@ -111,15 +111,15 @@ final class InvoiceEventHandler
 
 ### Scheduling
 
-Methods annotated with `Innocenzi\Discovery\Scheduling\Schedule` are discovered and registered as scheduled tasks.
+Methods annotated with `Discovery\Scheduling\Schedule` are discovered and registered as scheduled tasks.
 
-You can use either one of the built-in `Innocenzi\Discovery\Scheduling\Every` values or a raw cron expression:
+You can use either one of the built-in `Discovery\Scheduling\Every` values or a raw cron expression:
 
 ```php
 namespace Modules\Billing;
 
-use Innocenzi\Discovery\Scheduling\Every;
-use Innocenzi\Discovery\Scheduling\Schedule;
+use Discovery\Scheduling\Every;
+use Discovery\Scheduling\Schedule;
 
 final class BillingScheduler
 {
@@ -152,11 +152,11 @@ This example declares two routes: `GET /billing/invoices` and `POST /billing/inv
 ```php
 namespace Module\Billing;
 
-use Innocenzi\Discovery\Routing\Api;
-use Innocenzi\Discovery\Routing\Get;
-use Innocenzi\Discovery\Routing\Post;
-use Innocenzi\Discovery\Routing\Prefix;
-use Innocenzi\Discovery\Routing\Web;
+use Discovery\Routing\Api;
+use Discovery\Routing\Get;
+use Discovery\Routing\Post;
+use Discovery\Routing\Prefix;
+use Discovery\Routing\Web;
 
 #[Prefix(name: 'billing', uri: 'billing')]
 final class InvoiceController
@@ -220,12 +220,12 @@ The example above becomes available as `config('billing.enabled')`.
 
 This package provides [dependency initializers](https://tempestphp.com/3.x/essentials/container#dependency-initializers), a concept borrowed from Tempest. Initializers are simple classes responsible for initializing and configuring a specific dependency.
 
-In a typical Laravel application, this is done in service providers. Using this package, you can create a class implementing `Innocenzi\Discovery\Container\Initializer` anywhere (preferably, near related code), and it will be automatically discovered and registered in the container.
+In a typical Laravel application, this is done in service providers. Using this package, you can create a class implementing `Discovery\Container\Initializer` anywhere (preferably, near related code), and it will be automatically discovered and registered in the container.
 
 ```php
 namespace Modules\Strip;
 
-use Innocenzi\Discovery\Container\Initializer;
+use Discovery\Container\Initializer;
 use Illuminate\Container\Attributes\Singleton;
 use Psr\Container\ContainerInterface;
 
@@ -247,12 +247,12 @@ To register the initialized service as a singleton, add the built-in `Illuminate
 
 ### Global middleware
 
-Classes annotated with `Innocenzi\Discovery\Routing\Middleware` are pushed into the selected middleware group. Again, this class may be located anywhere in the application, and it will be automatically discovered and registered.
+Classes annotated with `Discovery\Routing\Middleware` are pushed into the selected middleware group. Again, this class may be located anywhere in the application, and it will be automatically discovered and registered.
 
 ```php
 namespace Infrastructure;
 
-use Innocenzi\Discovery\Routing\Middleware;
+use Discovery\Routing\Middleware;
 
 #[Middleware('api')]
 final class TraceRequestId

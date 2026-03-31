@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Hybridly;
+namespace Discovery\Hybridly;
 
 use Tempest\Discovery\Composer;
 use Tempest\Support\Namespace\Psr4Namespace;

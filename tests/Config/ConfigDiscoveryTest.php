@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Config;
 
+use Discovery\ConfigDiscovery;
 use Illuminate\Config\Repository;
-use Innocenzi\Discovery\ConfigDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

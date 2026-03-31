@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery;
+namespace Discovery;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;

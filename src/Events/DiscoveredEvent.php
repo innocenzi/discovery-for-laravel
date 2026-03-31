@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Events;
+namespace Discovery\Events;
 
 use Tempest\Reflection\MethodReflector;
 

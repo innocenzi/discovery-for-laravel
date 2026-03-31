@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Scheduling;
+namespace Discovery\Scheduling;
 
 /**
  * @mago-expect lint:too-many-enum-cases

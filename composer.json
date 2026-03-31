@@ -42,7 +42,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Innocenzi\\Discovery\\": "src/"
+			"Discovery\\": "src/"
 		}
 	},
 	"autoload-dev": {
@@ -59,7 +59,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Innocenzi\\Discovery\\DiscoveryServiceProvider"
+				"Discovery\\DiscoveryServiceProvider"
 			]
 		}
 	}

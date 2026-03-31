@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Hybridly;
 
-use Innocenzi\Discovery\Hybridly\DefaultHybridComponentNameResolver;
+use Discovery\Hybridly\DefaultHybridComponentNameResolver;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\Composer;

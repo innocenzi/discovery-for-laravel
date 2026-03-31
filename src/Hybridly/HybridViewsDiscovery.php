@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Hybridly;
+namespace Discovery\Hybridly;
 
 use Hybridly\Hybridly;
 use Tempest\Discovery\DiscoversPath;

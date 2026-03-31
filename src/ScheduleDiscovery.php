@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery;
+namespace Discovery;
 
+use Discovery\Scheduling\DiscoveredSchedule;
+use Discovery\Scheduling\Every;
+use Discovery\Scheduling\Schedule;
+use Discovery\Scheduling\Type;
 use Illuminate\Console\Scheduling\CallbackEvent;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\PendingEventAttributes;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schedule as Scheduler;
-use Innocenzi\Discovery\Scheduling\DiscoveredSchedule;
-use Innocenzi\Discovery\Scheduling\Every;
-use Innocenzi\Discovery\Scheduling\Schedule;
-use Innocenzi\Discovery\Scheduling\Type;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;

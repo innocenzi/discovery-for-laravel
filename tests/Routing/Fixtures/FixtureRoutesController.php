@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Routing\Fixtures;
 
-use Innocenzi\Discovery\Routing\Get;
-use Innocenzi\Discovery\Routing\Post;
-use Innocenzi\Discovery\Routing\Prefix;
+use Discovery\Routing\Get;
+use Discovery\Routing\Post;
+use Discovery\Routing\Prefix;
 
 #[Prefix(name: 'fixture', uri: 'fixture')]
 final class FixtureRoutesController

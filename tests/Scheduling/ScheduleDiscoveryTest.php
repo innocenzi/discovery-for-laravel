@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Scheduling;
 
+use Discovery\ScheduleDiscovery;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Console\Scheduling\Schedule as Scheduler;
-use Innocenzi\Discovery\ScheduleDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery;
+namespace Discovery;
 
+use Discovery\Events\DiscoveredEvent;
+use Discovery\Events\EventHandler;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Event;
-use Innocenzi\Discovery\Events\DiscoveredEvent;
-use Innocenzi\Discovery\Events\EventHandler;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;

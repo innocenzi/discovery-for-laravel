@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Scheduling\Fixtures;
 
-use Innocenzi\Discovery\Scheduling\Every;
-use Innocenzi\Discovery\Scheduling\Schedule;
+use Discovery\Scheduling\Every;
+use Discovery\Scheduling\Schedule;
 
 final class FixtureScheduledCallbacks
 {

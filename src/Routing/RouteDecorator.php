@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Routing;
+namespace Discovery\Routing;
 
 interface RouteDecorator
 {

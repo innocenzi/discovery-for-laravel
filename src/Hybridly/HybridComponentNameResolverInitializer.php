@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery\Hybridly;
+namespace Discovery\Hybridly;
 
+use Discovery\Initializer;
 use Illuminate\Container\Attributes\Singleton;
-use Innocenzi\Discovery\Initializer;
 use Psr\Container\ContainerInterface;
 use Tempest\Discovery\Composer;
 

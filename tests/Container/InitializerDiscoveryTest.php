@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Container;
 
-use Innocenzi\Discovery\InitializerDiscovery;
+use Discovery\InitializerDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

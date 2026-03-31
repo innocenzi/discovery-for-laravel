@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Events\Fixtures;
 
-use Innocenzi\Discovery\Events\EventHandler;
+use Discovery\Events\EventHandler;
 
 final class FixtureEventHandler
 {

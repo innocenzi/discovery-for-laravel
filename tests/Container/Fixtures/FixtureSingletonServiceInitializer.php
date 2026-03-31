@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Container\Fixtures;
 
+use Discovery\Initializer;
 use Illuminate\Container\Attributes\Singleton;
-use Innocenzi\Discovery\Initializer;
 use Psr\Container\ContainerInterface;
 
 #[Singleton]

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Events;
 
+use Discovery\EventHandlerDiscovery;
 use Illuminate\Support\Facades\Event;
-use Innocenzi\Discovery\EventHandlerDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\PreCondition;
 use PHPUnit\Framework\Attributes\Test;

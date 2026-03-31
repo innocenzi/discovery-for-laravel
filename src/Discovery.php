@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery;
+namespace Discovery;
 
 use Psr\Container\ContainerInterface;
 use Tempest\Discovery\BootDiscovery;

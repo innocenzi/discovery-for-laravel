@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Routing;
 
+use Discovery\MiddlewareDiscovery;
 use Illuminate\Routing\Router;
-use Innocenzi\Discovery\MiddlewareDiscovery;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Tempest\Discovery\DiscoveryItems;

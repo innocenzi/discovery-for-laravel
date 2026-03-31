@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Innocenzi\Discovery;
+namespace Discovery;
 
 use Illuminate\Container\Attributes\Singleton;
 use Illuminate\Contracts\Foundation\Application;
