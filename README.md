@@ -8,6 +8,11 @@ Automatically locate controller actions, console commands, configuration files a
 
 &nbsp;
 
+> ![WARNING]
+> This package is not ready yet. I am waiting for a Tempest release before publishing it on Packagist.
+
+&nbsp;
+
 ## What it does
 
 If you ever wanted to architecture your application however you want, for instance by using modules or vertical slices, you probably had to give up on some of Laravel's conveniences, such as automatic Artisan command registration.
