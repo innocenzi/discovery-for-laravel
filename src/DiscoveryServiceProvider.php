@@ -43,9 +43,7 @@ final class DiscoveryServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->app->singleton(ComponentsResolver::class, static function () {
-            return new StaticComponentsResolver();
-        });
+        $this->app->singleton(ComponentsResolver::class, static fn () => new StaticComponentsResolver());
 
         $this->app->singleton(HybridComponentNameResolver::class, static function () {
             $root = config('discovery.autoload_path');

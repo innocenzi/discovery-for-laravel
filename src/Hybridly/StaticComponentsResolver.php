@@ -8,6 +8,11 @@ use Closure;
 use Hybridly\Architecture\ComponentsResolver;
 use Hybridly\Architecture\IdentifierGenerator;
 
+/**
+ * @mago-expect lint:too-many-methods
+ * @mago-expect lint:no-boolean-flag-parameter
+ * @mago-expect lint:variable-name
+ */
 final class StaticComponentsResolver implements ComponentsResolver
 {
     /** @var array<array{path: string, namespace: string, identifier: string}> */

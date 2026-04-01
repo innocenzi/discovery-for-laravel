@@ -10,7 +10,10 @@ use Hybridly\Architecture\IdentifierGenerator;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-/** @internal */
+/**
+ * @internal
+ * @mago-expect lint:variable-name
+ */
 final class StaticComponentsResolverTest extends TestCase
 {
     #[Test]
