@@ -28,6 +28,12 @@ final class ScheduleDiscovery implements Discovery
 
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
+        $attribute = $class->getAttribute(Schedule::class);
+
+        if ($attribute) {
+            $this->discoveryItems->add($location, DiscoveredSchedule::fromClass($class, $attribute));
+        }
+
         foreach ($class->getPublicMethods() as $method) {
             $attribute = $method->getAttribute(Schedule::class);
 

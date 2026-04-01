@@ -13,6 +13,7 @@ use Tempest\Discovery\DiscoveryItems;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Reflection\ClassReflector;
 use Tests\Scheduling\Fixtures\FixtureScheduledCallbacks;
+use Tests\Scheduling\Fixtures\FixtureScheduledClass;
 
 /** @internal */
 final class ScheduleDiscoveryTest extends TestCase
@@ -64,5 +65,32 @@ final class ScheduleDiscoveryTest extends TestCase
         /** @var Event $daily_at */
         $daily_at = $events_by_name['daily_at'];
         $this->assertSame('30 13 * * *', $daily_at->expression);
+    }
+
+    #[Test]
+    public function finds_schedule_on_class(): void
+    {
+        $discovery = new ScheduleDiscovery(application: $this->app);
+        $discovery->setItems(new DiscoveryItems([]));
+
+        $discovery->discover(
+            location: new DiscoveryLocation('App', path: 'src/'),
+            class: new ClassReflector(FixtureScheduledClass::class),
+        );
+
+        $discovery->apply();
+
+        $events = $this->app->make(Scheduler::class)->events();
+        $events_by_name = [];
+
+        foreach ($events as $event) {
+            $events_by_name[$event->description] = $event;
+        }
+
+        $this->assertArrayHasKey('class_thirty_minutes', $events_by_name);
+
+        /** @var Event $class_thirty_minutes */
+        $class_thirty_minutes = $events_by_name['class_thirty_minutes'];
+        $this->assertSame('*/30 * * * *', $class_thirty_minutes->expression);
     }
 }

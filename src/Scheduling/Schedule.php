@@ -9,7 +9,7 @@ use Attribute;
 /**
  * @mago-expect lint:property-name
  */
-#[Attribute(Attribute::TARGET_METHOD)]
+#[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_CLASS)]
 final class Schedule
 {
     /**

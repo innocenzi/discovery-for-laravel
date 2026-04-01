@@ -6,6 +6,7 @@ namespace Discovery\Scheduling;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Tempest\Reflection\ClassReflector;
 use Tempest\Reflection\MethodReflector;
 
 /**
@@ -24,6 +25,40 @@ final class DiscoveredSchedule
         public readonly ?bool $onOneServer = null,
         public readonly ?bool $runInBackground = null,
     ) {}
+
+    public static function fromClass(ClassReflector $class, Schedule $attribute): self
+    {
+        $type = Type::CALL;
+        $method = '__invoke';
+
+        if ($class->is(Command::class)) {
+            $type = Type::COMMAND;
+
+            if ($class->getMethod('handle')) {
+                $method = 'handle';
+            }
+        }
+
+        if ($class->is(ShouldQueue::class)) {
+            $type = Type::JOB;
+
+            if ($class->getMethod('handle')) {
+                $method = 'handle';
+            }
+        }
+
+        return new self(
+            class: $class->getName(),
+            method: $method,
+            schedule: $attribute->schedule,
+            type: $type,
+            name: $attribute->name,
+            time: $attribute->time,
+            withoutOverlapping: $attribute->withoutOverlapping,
+            onOneServer: $attribute->onOneServer,
+            runInBackground: $attribute->runInBackground,
+        );
+    }
 
     public static function fromMethod(MethodReflector $method, Schedule $attribute): self
     {
