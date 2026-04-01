@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Discovery\Hybridly;
+namespace Discovery;
 
+use Discovery\Hybridly\HybridComponentNameResolver;
 use Hybridly\Hybridly;
 use Tempest\Discovery\DiscoversPath;
 use Tempest\Discovery\Discovery;

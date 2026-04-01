@@ -11,7 +11,7 @@ return [
         // \Discovery\InitializerDiscovery::class,
         // \Discovery\CommandDiscovery::class,
         // \Discovery\MiddlewareDiscovery::class,
-        \Discovery\Hybridly\HybridViewsDiscovery::class,
+        \Discovery\HybridViewsDiscovery::class,
     ],
 
     /**
