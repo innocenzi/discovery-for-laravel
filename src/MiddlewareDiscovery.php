@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Discovery;
 
 use Discovery\Routing\Middleware;
+use Illuminate\Contracts\Http\Kernel as KernelContract;
 use Illuminate\Foundation\Http\Kernel;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
@@ -15,8 +16,9 @@ final class MiddlewareDiscovery implements Discovery
 {
     use IsDiscovery;
 
+    /** @param Kernel $kernel */
     public function __construct(
-        private readonly Kernel $kernel,
+        private readonly KernelContract $kernel,
     ) {}
 
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
