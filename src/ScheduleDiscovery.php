@@ -48,50 +48,52 @@ final class ScheduleDiscovery implements Discovery
     /** @mago-expect lint:halstead */
     public function apply(): void
     {
-        /** @var DiscoveredSchedule $schedule */
-        foreach ($this->discoveryItems as $schedule) {
-            $scheduler = $this->createSchedule($schedule);
+        $this->application->booted(function () {
+            /** @var DiscoveredSchedule $schedule */
+            foreach ($this->discoveryItems as $schedule) {
+                $scheduler = $this->createSchedule($schedule);
 
-            if ($schedule->name) {
-                $scheduler->name($schedule->name);
+                if ($schedule->name) {
+                    $scheduler->name($schedule->name);
+                }
+
+                if ($schedule->withoutOverlapping !== null) {
+                    $scheduler->withoutOverlapping();
+                }
+
+                if ($schedule->onOneServer !== null) {
+                    $scheduler->onOneServer();
+                }
+
+                if ($schedule->runInBackground) {
+                    $scheduler->runInBackground();
+                }
+
+                match ($schedule->schedule) {
+                    Every::SECOND => $scheduler->everySecond(),
+                    Every::FIVE_SECONDS => $scheduler->everyFiveSeconds(),
+                    Every::TEN_SECONDS => $scheduler->everyTenSeconds(),
+                    Every::THIRTY_SECONDS => $scheduler->everyThirtySeconds(),
+                    Every::MINUTE => $scheduler->everyMinute(),
+                    Every::TWO_MINUTES => $scheduler->everyTwoMinutes(),
+                    Every::THREE_MINUTES => $scheduler->everyThreeMinutes(),
+                    Every::FOUR_MINUTES => $scheduler->everyFourMinutes(),
+                    Every::FIVE_MINUTES => $scheduler->everyFiveMinutes(),
+                    Every::TEN_MINUTES => $scheduler->everyTenMinutes(),
+                    Every::FIFTEEN_MINUTES => $scheduler->everyFifteenMinutes(),
+                    Every::THIRTY_MINUTES => $scheduler->everyThirtyMinutes(),
+                    Every::HOUR => $scheduler->hourlyAt($schedule->time ?? '0'),
+                    Every::TWO_HOURS => $scheduler->everyTwoHours(),
+                    Every::THREE_HOURS => $scheduler->everyThreeHours(),
+                    Every::FOUR_HOURS => $scheduler->everyFourHours(),
+                    Every::SIX_HOURS => $scheduler->everySixHours(),
+                    Every::DAY => $scheduler->dailyAt($schedule->time ?? '00:00'),
+                    Every::MONTH => $scheduler->monthly(),
+                    Every::YEAR => $scheduler->yearly(),
+                    default => $scheduler->cron($schedule->schedule),
+                };
             }
-
-            if ($schedule->withoutOverlapping !== null) {
-                $scheduler->withoutOverlapping();
-            }
-
-            if ($schedule->onOneServer !== null) {
-                $scheduler->onOneServer();
-            }
-
-            if ($schedule->runInBackground) {
-                $scheduler->runInBackground();
-            }
-
-            match ($schedule->schedule) {
-                Every::SECOND => $scheduler->everySecond(),
-                Every::FIVE_SECONDS => $scheduler->everyFiveSeconds(),
-                Every::TEN_SECONDS => $scheduler->everyTenSeconds(),
-                Every::THIRTY_SECONDS => $scheduler->everyThirtySeconds(),
-                Every::MINUTE => $scheduler->everyMinute(),
-                Every::TWO_MINUTES => $scheduler->everyTwoMinutes(),
-                Every::THREE_MINUTES => $scheduler->everyThreeMinutes(),
-                Every::FOUR_MINUTES => $scheduler->everyFourMinutes(),
-                Every::FIVE_MINUTES => $scheduler->everyFiveMinutes(),
-                Every::TEN_MINUTES => $scheduler->everyTenMinutes(),
-                Every::FIFTEEN_MINUTES => $scheduler->everyFifteenMinutes(),
-                Every::THIRTY_MINUTES => $scheduler->everyThirtyMinutes(),
-                Every::HOUR => $scheduler->hourlyAt($schedule->time ?? '0'),
-                Every::TWO_HOURS => $scheduler->everyTwoHours(),
-                Every::THREE_HOURS => $scheduler->everyThreeHours(),
-                Every::FOUR_HOURS => $scheduler->everyFourHours(),
-                Every::SIX_HOURS => $scheduler->everySixHours(),
-                Every::DAY => $scheduler->dailyAt($schedule->time ?? '00:00'),
-                Every::MONTH => $scheduler->monthly(),
-                Every::YEAR => $scheduler->yearly(),
-                default => $scheduler->cron($schedule->schedule),
-            };
-        }
+        });
     }
 
     private function createSchedule(DiscoveredSchedule $schedule): PendingEventAttributes|CallbackEvent|Event
