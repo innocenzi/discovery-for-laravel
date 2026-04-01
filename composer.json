@@ -31,14 +31,14 @@
 	},
 	"require": {
 		"php": "~8.5",
-		"tempest/discovery": "^3.8.1",
+		"tempest/discovery": "^3.9",
 		"illuminate/contracts": "^13.2"
 	},
 	"require-dev": {
-		"carthage-software/mago": "^1.16",
+		"carthage-software/mago": "^1.17",
 		"orchestra/testbench": "^11.0",
 		"hybridly/laravel": "0.10.0-beta.14",
-		"phpunit/phpunit": "^12.5"
+		"phpunit/phpunit": "^12.5.15"
 	},
 	"autoload": {
 		"psr-4": {
