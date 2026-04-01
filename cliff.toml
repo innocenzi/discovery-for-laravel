@@ -49,9 +49,5 @@ commit_parsers = [
 	{ message = "^fix", group = "<!-- 2 -->🐛 Bug fixes" },
 	{ body = ".*security", group = "<!-- 3 -->🛡️ Security" },
 	{ message = "^revert", group = "<!-- 4 -->⏪ Revert" },
-	{ message = "^docs", group = "<!-- 5 -->📚 Documentation", skip = true },
-	{ message = "^refactor", group = "<!-- 6 -->🚜 Refactor", skip = true },
-	{ message = "^test", group = "<!-- 7 -->🧪 Tests", skip = true },
-	{ message = "^style", skip = true },
-	{ message = "^chore|^ci", skip = true },
+	{ message = "^chore|^ci|^release|^style|^test|^refactor|^docs", skip = true },
 ]
