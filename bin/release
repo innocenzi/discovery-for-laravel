@@ -12,7 +12,7 @@ function run(string ...$command): ?string
 	$arguments = array_map(static fn (string $argument): string => escapeshellarg($argument), $command);
 	$compiled = vsprintf($format, $arguments);
 
-	return trim(shell_exec($compiled . ' 2>&1') ?: '') ?: null;
+	return trim(shell_exec($compiled) ?: '') ?: null;
 }
 
 /*
@@ -36,13 +36,14 @@ if ($tag = $argv[1] ?? null) {
 }
 
 $tag ??= run('git-cliff --bumped-version 2> /dev/null');
+$tag = !str_starts_with($tag, 'v') ? "v{$tag}" : $tag;
 
 if (run('git tag --list %s', $tag)) {
 	throw new RuntimeException(sprintf('Tag `%s` already exists.', $tag));
 }
 
 run('git add %s', CHANGELOG_PATH);
-run('git commit -m %s', sprintf('release: v%s', $tag));
-run('git tag %s', $tag);
+run('git commit -m %s', sprintf('release: %s', $tag));
+run('git tag -a %s -m %s', $tag, sprintf('release: %s', $tag));
 
-echo sprintf("Tagged %s. Create the release with: git push --atomic origin main %s\n", $tag, $tag);
+echo sprintf('Tagged %s. Create the release with: git push origin main %s' . "\n", $tag, $tag);
