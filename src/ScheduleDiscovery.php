@@ -89,6 +89,7 @@ final class ScheduleDiscovery implements Discovery
                     Every::FOUR_HOURS => $scheduler->everyFourHours(),
                     Every::SIX_HOURS => $scheduler->everySixHours(),
                     Every::DAY => $scheduler->dailyAt($schedule->time ?? '00:00'),
+                    Every::DAY_TWICE => $scheduler->twiceDaily(),
                     Every::MONTH => $scheduler->monthly(),
                     Every::YEAR => $scheduler->yearly(),
                     default => $scheduler->cron($schedule->schedule),

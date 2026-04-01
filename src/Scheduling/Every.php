@@ -30,6 +30,7 @@ enum Every
     case SIX_HOURS;
     case ODD_HOUR;
     case DAY;
+    case DAY_TWICE;
     case WEEK;
     case MONTH;
     case YEAR;
