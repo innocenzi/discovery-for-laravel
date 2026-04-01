@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.1.0..v0.1.1)  —  2026-04-01
+
+### 🐛 Bug fixes
+
+- **config**: ignore config files returning objects ([6542b74](https://github.com/innocenzi/discovery-for-laravel/commit/6542b74859cef05c6e074b2c82fefd6b65cc4e3e))
+
+
 ## 0.1.0  —  2026-04-01
 
 ### 🚀 Features
