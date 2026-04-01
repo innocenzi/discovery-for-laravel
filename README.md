@@ -10,7 +10,7 @@ Automatically locate controller actions, console commands, configuration files a
 
 ## What it does
 
-If you ever wanted to architecture your application however you want, for instance by using modules or vertical slices, you probably had to give up on some of Laravel's conveniences, such as automatic Artisan command registration.
+If you ever wanted to architecture your application however you want, for instance by organizing your code in modules or in vertical slices, you probably had to give up on some of Laravel's conveniences, such as automatic Artisan command registration.
 
 This package brings [Tempest's discovery](https://tempestphp.com/3.x/essentials/discovery) into Laravel applications, which allows for:
 
@@ -20,6 +20,8 @@ This package brings [Tempest's discovery](https://tempestphp.com/3.x/essentials/
 - Registering container bindings through dedicated initializer classes,
 - Registering global middleware using attributes.
 
+Of course, each of these features can easily be [disabled individually](#discoveries) if you don't want them.
+
 &nbsp;
 
 ## Installation
@@ -28,39 +30,35 @@ Install via Composer:
 
 ```bash
 composer require innocenzi/discovery-for-laravel
-```
 
-Optionally, publish the configuration file when you want to customize behavior:
-
-```bash
+# Optional, if you need to customize behavior
 php artisan vendor:publish --provider="Discovery\DiscoveryServiceProvider"
 ```
+
+That's it, you don't need to do anything else. You can read what the built-in [discoveries](#discoveries) do to understand how you can benefit from them.
 
 &nbsp;
 
 ## Production
 
-To avoid any performance overhead in production, it's important to create a discovery cache. You may do so by adding `php artisan discovery:generate` to your deployment script.
+To avoid any performance overhead in production, it is important to generate the discovery cache. The cache will store all discovered items, preventing the need to scan the filesystem.
+
+You may do so by adding `php artisan discovery:generate` to your deployment script, typically before the `optimize` step.
 
 ```bash
 php artisan discovery:generate
+php artisan optimize
 ```
 
 &nbsp;
 
 ## Discoveries
 
-This package comes with a set of default discoveries. They can be disabled individually by updating the `skip_classes` option in `config/discovery.php`.
+By default, we provide the ability to discover [artisan commands](#artisan-commands), [event handlers](#event-handlers), [controller actions](#routing), [configuration files](#configuration-files), [schedules](#scheduling), [global middleware](#global-middleware) and [dependency initializers](#dependency-initializers).
 
-By default, we provide the following:
+Of course, each of these can be disabled individually by updating the `skip_classes` option in `config/discovery.php`.
 
-- `\Discovery\CommandDiscovery`
-- `\Discovery\EventHandlerDiscovery`
-- `\Discovery\RouteDiscovery`
-- `\Discovery\ConfigDiscovery`
-- `\Discovery\InitializerDiscovery`
-- `\Discovery\MiddlewareDiscovery`
-- `\Discovery\ScheduleDiscovery`
+You can also [create your own discoveries](https://tempestphp.com/3.x/essentials/discovery#implementing-your-own-discovery) if you have another use case for it.
 
 &nbsp;
 
