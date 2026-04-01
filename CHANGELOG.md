@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0](https://github.com/innocenzi/discovery-for-laravel/compare/v0.2.1..v0.3.0)  —  2026-04-01
+
+### 🚀 Features
+
+- **schedule**: support `#[Schedule]` on classes ([0ba5533](https://github.com/innocenzi/discovery-for-laravel/commit/0ba55336c998eed641266751b5f527d69545d4f1))
+- **schedule**: provide "every two seconds" schedule ([b7a01df](https://github.com/innocenzi/discovery-for-laravel/commit/b7a01dff0dca870dc9c694c6877f372bed2ac42d))
+- **schedule**: provide "twice daily" schedule ([6d51ac2](https://github.com/innocenzi/discovery-for-laravel/commit/6d51ac2a7fd833fc4863212918f08fe89a823814))
+- **schedule**: support schedule filters ([c59386d](https://github.com/innocenzi/discovery-for-laravel/commit/c59386d4ce0f9abddc59cc2ff7907781e748d5ee))
+
+### 🐛 Bug fixes
+
+- **schedule**: register schedules only when application is booted ([b414879](https://github.com/innocenzi/discovery-for-laravel/commit/b41487996e508d9679f465d9081fc5d3ce55f67e))
+
+
 ## [0.2.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.2.0..v0.2.1)  —  2026-04-01
 
 ### 🐛 Bug fixes
