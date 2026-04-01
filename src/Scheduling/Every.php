@@ -10,6 +10,7 @@ namespace Discovery\Scheduling;
 enum Every
 {
     case SECOND;
+    case TWO_SECONDS;
     case FIVE_SECONDS;
     case TEN_SECONDS;
     case FIFTEEN_SECONDS;

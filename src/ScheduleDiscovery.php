@@ -71,6 +71,7 @@ final class ScheduleDiscovery implements Discovery
 
                 match ($schedule->schedule) {
                     Every::SECOND => $scheduler->everySecond(),
+                    Every::TWO_SECONDS => $scheduler->everyTwoSeconds(),
                     Every::FIVE_SECONDS => $scheduler->everyFiveSeconds(),
                     Every::TEN_SECONDS => $scheduler->everyTenSeconds(),
                     Every::THIRTY_SECONDS => $scheduler->everyThirtySeconds(),
