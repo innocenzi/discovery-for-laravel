@@ -19,6 +19,7 @@ final class Schedule
      * @param null|bool $withoutOverlapping Whether the schedule should be prevented from overlapping.
      * @param null|bool $onOneServer Whether the schedule should only run on one server in a multi-server environment.
      * @param null|bool $runInBackground Whether the schedule should run in the background.
+     * @param array $when An array of conditions that should be passed to the `when` method on the event.
      */
     public function __construct(
         public readonly string|Every $schedule,
@@ -27,5 +28,6 @@ final class Schedule
         public readonly ?bool $withoutOverlapping = null,
         public readonly ?bool $onOneServer = null,
         public readonly ?bool $runInBackground = null,
+        public readonly array $when = [],
     ) {}
 }

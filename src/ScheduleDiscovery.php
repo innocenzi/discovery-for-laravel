@@ -69,6 +69,12 @@ final class ScheduleDiscovery implements Discovery
                     $scheduler->runInBackground();
                 }
 
+                if (count($schedule->when) > 0) {
+                    foreach ($schedule->when as $condition) {
+                        $scheduler->when($condition);
+                    }
+                }
+
                 match ($schedule->schedule) {
                     Every::SECOND => $scheduler->everySecond(),
                     Every::TWO_SECONDS => $scheduler->everyTwoSeconds(),
@@ -108,6 +114,6 @@ final class ScheduleDiscovery implements Discovery
             return Scheduler::command($schedule->class);
         }
 
-        return Scheduler::call([$schedule->class, $schedule->method]);
+        return Scheduler::call($schedule->method ? [$schedule->class, $schedule->method] : $schedule->class);
     }
 }

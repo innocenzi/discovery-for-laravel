@@ -16,7 +16,7 @@ final class DiscoveredSchedule
 {
     public function __construct(
         public readonly string $class,
-        public readonly string $method,
+        public readonly ?string $method = null,
         public readonly string|Every $schedule,
         public readonly Type $type,
         public readonly ?string $name = null,
@@ -24,12 +24,12 @@ final class DiscoveredSchedule
         public readonly ?bool $withoutOverlapping = null,
         public readonly ?bool $onOneServer = null,
         public readonly ?bool $runInBackground = null,
+        public readonly array $when = [],
     ) {}
 
     public static function fromClass(ClassReflector $class, Schedule $attribute): self
     {
         $type = Type::CALL;
-        $method = '__invoke';
 
         if ($class->is(Command::class)) {
             $type = Type::COMMAND;
@@ -57,6 +57,7 @@ final class DiscoveredSchedule
             withoutOverlapping: $attribute->withoutOverlapping,
             onOneServer: $attribute->onOneServer,
             runInBackground: $attribute->runInBackground,
+            when: $attribute->when,
         );
     }
 
@@ -74,7 +75,7 @@ final class DiscoveredSchedule
 
         return new self(
             class: $method->getDeclaringClass()->getName(),
-            method: $method->getName(),
+            method: $method->getName() === '__invoke' ? null : $method->getName(),
             schedule: $attribute->schedule,
             type: $type,
             name: $attribute->name,
@@ -82,6 +83,7 @@ final class DiscoveredSchedule
             withoutOverlapping: $attribute->withoutOverlapping,
             onOneServer: $attribute->onOneServer,
             runInBackground: $attribute->runInBackground,
+            when: $attribute->when,
         );
     }
 }
