@@ -39,4 +39,24 @@ final class ConfigDiscoveryTest extends TestCase
         $this->assertNull($config->get('ignored.found'));
         $this->assertTrue($config->get('fixture.found'));
     }
+
+    #[Test]
+    public function ignores_object_configs(): void
+    {
+        $discovery = new ConfigDiscovery(
+            application: $this->app,
+            config: $config = $this->app->make(Repository::class),
+        );
+
+        $discovery->setItems(new DiscoveryItems([]));
+
+        $discovery->discoverPath(
+            location: new DiscoveryLocation('App', path: 'config/'),
+            path: __DIR__ . '/object.config.php',
+        );
+
+        $discovery->apply();
+
+        $this->assertNull($config->get('object.found'));
+    }
 }

@@ -32,6 +32,11 @@ final class ConfigDiscovery implements Discovery, DiscoversPath
             return;
         }
 
+        // ignore object configs, as they can't be serialized in the cache by Laravel
+        if (! is_array(require $path)) {
+            return;
+        }
+
         $this->discoveryItems->add($location, $path);
     }
 
