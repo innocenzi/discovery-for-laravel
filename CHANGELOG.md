@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.2.0..v0.2.1)  —  2026-04-01
+
+### 🐛 Bug fixes
+
+- **middleware**: use kernel contract to register middleware ([7e17b0a](https://github.com/innocenzi/discovery-for-laravel/commit/7e17b0ae4bf2c28be26ef43e7a01bd66bedf169f))
+
+
 ## [0.2.0](https://github.com/innocenzi/discovery-for-laravel/compare/v0.1.1..v0.2.0)  —  2026-04-01
 
 ### 🚀 Features
