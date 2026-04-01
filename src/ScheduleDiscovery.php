@@ -18,6 +18,10 @@ use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;
 use Tempest\Reflection\ClassReflector;
 
+/**
+ * @mago-expect lint:halstead
+ * @mago-expect lint:kan-defect
+ */
 final class ScheduleDiscovery implements Discovery
 {
     use IsDiscovery;
@@ -45,7 +49,6 @@ final class ScheduleDiscovery implements Discovery
         }
     }
 
-    /** @mago-expect lint:halstead */
     public function apply(): void
     {
         $this->application->booted(function () {

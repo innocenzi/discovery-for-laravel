@@ -16,7 +16,7 @@ final class DiscoveredSchedule
 {
     public function __construct(
         public readonly string $class,
-        public readonly ?string $method = null,
+        public readonly ?string $method,
         public readonly string|Every $schedule,
         public readonly Type $type,
         public readonly ?string $name = null,
@@ -30,6 +30,7 @@ final class DiscoveredSchedule
     public static function fromClass(ClassReflector $class, Schedule $attribute): self
     {
         $type = Type::CALL;
+        $method = null;
 
         if ($class->is(Command::class)) {
             $type = Type::COMMAND;
