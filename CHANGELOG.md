@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0](https://github.com/innocenzi/discovery-for-laravel/compare/v0.1.1..v0.2.0)  —  2026-04-01
+
+### 🚀 Features
+
+- **hybridly**: support discovery hybrid views ([2307017](https://github.com/innocenzi/discovery-for-laravel/commit/23070170115b4a46129bd470a86c5858c24da1ca))
+
+### 🐛 Bug fixes
+
+- **middleware**: register global middleware in kernel ([f3f8e79](https://github.com/innocenzi/discovery-for-laravel/commit/f3f8e797e1311903d1ebb1271bf23fa18c5b5a3f))
+
+
 ## [0.1.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.1.0..v0.1.1)  —  2026-04-01
 
 ### 🐛 Bug fixes
