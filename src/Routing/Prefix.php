@@ -14,8 +14,8 @@ use Illuminate\Support\Str;
 final class Prefix implements RouteDecorator
 {
     public function __construct(
-        private readonly string $name = '',
         private readonly string $uri = '',
+        private readonly string $name = '',
     ) {}
 
     public function decorate(Route $route): Route

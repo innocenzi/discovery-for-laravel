@@ -8,7 +8,7 @@ use Discovery\Routing\Get;
 use Discovery\Routing\Post;
 use Discovery\Routing\Prefix;
 
-#[Prefix(name: 'fixture', uri: 'fixture')]
+#[Prefix(uri: 'fixture', name: 'fixture')]
 final class FixtureRoutesController
 {
     #[Get(uri: 'list', name: 'list')]
