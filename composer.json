@@ -11,8 +11,8 @@
 	],
 	"scripts": {
 		"release": [
-			"composer qa",
-			"./bin/release"
+			"composer qa @no_additional_args",
+			"./bin/release @additional_args"
 		],
 		"test": "phpunit",
 		"fmt": [
