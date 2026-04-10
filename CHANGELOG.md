@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.3.0..v0.3.1)  —  2026-04-10
+
+### 🚨 Breaking changes
+
+- [**breaking**] invert `#[Prefix]` arguments ([2ef94f3](https://github.com/innocenzi/discovery-for-laravel/commit/2ef94f330c5955ed78074329f353390f253b047f))
+
+### 🚀 Features
+
+- **routing**: add `Patch` and `Put` attributes ([9d6d661](https://github.com/innocenzi/discovery-for-laravel/commit/9d6d6616ee0aa4538c867d122994a59c059406f5))
+
+
 ## [0.3.0](https://github.com/innocenzi/discovery-for-laravel/compare/v0.2.1..v0.3.0)  —  2026-04-01
 
 ### 🚀 Features
