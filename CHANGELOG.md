@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.2](https://github.com/innocenzi/discovery-for-laravel/compare/v0.3.1..v0.3.2)  —  2026-04-20
+
+### 🚀 Features
+
+- **schedule**: add support for `tap` ([08c2395](https://github.com/innocenzi/discovery-for-laravel/commit/08c2395b6f0ba3e13f1aaeafcad373a4a3ee0f9f))
+
+
 ## [0.3.1](https://github.com/innocenzi/discovery-for-laravel/compare/v0.3.0..v0.3.1)  —  2026-04-10
 
 ### 🚨 Breaking changes
