@@ -21,6 +21,7 @@ use Tempest\Reflection\ClassReflector;
 /**
  * @mago-expect lint:halstead
  * @mago-expect lint:kan-defect
+ * @mago-expect lint:cyclomatic-complexity
  */
 final class ScheduleDiscovery implements Discovery
 {
@@ -75,6 +76,12 @@ final class ScheduleDiscovery implements Discovery
                 if (count($schedule->when) > 0) {
                     foreach ($schedule->when as $condition) {
                         $scheduler->when($condition);
+                    }
+                }
+
+                if (count($schedule->tap) > 0) {
+                    foreach ($schedule->tap as $tap) {
+                        $scheduler->tap($tap);
                     }
                 }
 

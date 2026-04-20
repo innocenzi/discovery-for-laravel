@@ -25,6 +25,7 @@ final class DiscoveredSchedule
         public readonly ?bool $onOneServer = null,
         public readonly ?bool $runInBackground = null,
         public readonly array $when = [],
+        public readonly array $tap = [],
     ) {}
 
     public static function fromClass(ClassReflector $class, Schedule $attribute): self
@@ -59,6 +60,7 @@ final class DiscoveredSchedule
             onOneServer: $attribute->onOneServer,
             runInBackground: $attribute->runInBackground,
             when: $attribute->when,
+            tap: $attribute->tap,
         );
     }
 
@@ -85,6 +87,7 @@ final class DiscoveredSchedule
             onOneServer: $attribute->onOneServer,
             runInBackground: $attribute->runInBackground,
             when: $attribute->when,
+            tap: $attribute->tap,
         );
     }
 }
