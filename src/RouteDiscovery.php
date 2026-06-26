@@ -51,7 +51,7 @@ final class RouteDiscovery implements Discovery
 
         /** @var DiscoveredRoute $route */
         foreach ($this->discoveryItems as $route) {
-            $this->router
+            $definition = $this->router
                 ->addRoute(
                     methods: [$route->method->value],
                     uri: $route->uri,
@@ -61,6 +61,12 @@ final class RouteDiscovery implements Discovery
                 ->withoutMiddleware($route->without_middleware)
                 ->where($route->where)
                 ->name($route->name);
+
+            match ($route->scope) {
+                true => $definition->scopeBindings(),
+                false => $definition->withoutScopedBindings(),
+                null => null,
+            };
         }
     }
 }

@@ -20,5 +20,6 @@ final class Put implements Route
         public array $middleware = [],
         public array $without_middleware = [],
         public array $where = [],
+        public ?bool $scope = null,
     ) {}
 }

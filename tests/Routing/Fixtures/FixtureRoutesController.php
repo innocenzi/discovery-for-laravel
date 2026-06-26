@@ -20,4 +20,14 @@ final class FixtureRoutesController
     public function store(): void
     {
     }
+
+    #[Get(uri: 'scoped/{user}/posts/{post}', name: 'scoped', scope: true)]
+    public function scoped(): void
+    {
+    }
+
+    #[Get(uri: 'unscoped/{user}/posts/{post}', name: 'unscoped', scope: false)]
+    public function unscoped(): void
+    {
+    }
 }

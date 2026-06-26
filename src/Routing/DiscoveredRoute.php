@@ -16,6 +16,7 @@ final class DiscoveredRoute
         public readonly array $without_middleware,
         public readonly ?string $name,
         public readonly array $where,
+        public readonly ?bool $scope,
     ) {}
 
     /** @param array<RouteDecorator> $decorators */
@@ -35,6 +36,7 @@ final class DiscoveredRoute
             without_middleware: $route->without_middleware,
             name: $route->name,
             where: $route->where,
+            scope: $route->scope,
         );
     }
 }

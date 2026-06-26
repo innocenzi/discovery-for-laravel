@@ -37,13 +37,25 @@ final class RouteDiscoveryTest extends TestCase
 
         $get = $routes->getByAction(FixtureRoutesController::class . '@index');
         $post = $routes->getByAction(FixtureRoutesController::class . '@store');
+        $scoped = $routes->getByAction(FixtureRoutesController::class . '@scoped');
+        $unscoped = $routes->getByAction(FixtureRoutesController::class . '@unscoped');
 
         $this->assertSame('fixture/list', $get->uri());
         $this->assertContains('GET', $get->methods());
         $this->assertSame(FixtureRoutesController::class . '@index', $get->getActionName());
+        $this->assertFalse($get->enforcesScopedBindings());
+        $this->assertFalse($get->preventsScopedBindings());
 
         $this->assertSame('fixture/submit', $post->uri());
         $this->assertContains('POST', $post->methods());
         $this->assertSame(FixtureRoutesController::class . '@store', $post->getActionName());
+
+        $this->assertSame('fixture/scoped/{user}/posts/{post}', $scoped->uri());
+        $this->assertTrue($scoped->enforcesScopedBindings());
+        $this->assertFalse($scoped->preventsScopedBindings());
+
+        $this->assertSame('fixture/unscoped/{user}/posts/{post}', $unscoped->uri());
+        $this->assertFalse($unscoped->enforcesScopedBindings());
+        $this->assertTrue($unscoped->preventsScopedBindings());
     }
 }

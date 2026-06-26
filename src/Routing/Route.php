@@ -36,6 +36,11 @@ interface Route
     public ?string $name { get; set; }
 
     /**
+     * Whether the route should enforce scoped implicit bindings.
+     */
+    public ?bool $scope { get; set; }
+
+    /**
      * The route parameter constraints. The keys are the route segments, and the values are the regular expressions that should be used to validate them.
      *
      * @var array<string, string>
