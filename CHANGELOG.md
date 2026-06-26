@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0](https://github.com/innocenzi/discovery-for-laravel/compare/v0.3.2..v0.4.0)  —  2026-06-26
+
+### 🚀 Features
+
+- **routing**: support route scope binding ([b229869](https://github.com/innocenzi/discovery-for-laravel/commit/b229869998834cdb9627543a326f11a3f41e7ba7))
+
+
 ## [0.3.2](https://github.com/innocenzi/discovery-for-laravel/compare/v0.3.1..v0.3.2)  —  2026-04-20
 
 ### 🚀 Features
